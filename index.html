@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Methods | Child Actor 101</title>
+    <meta name="description" content="An 8-week advanced training experience for actors 12+ ready to go beyond instinct and learn professional techniques.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --bg-neutral: #141416;
+            --bg-light: #1c1c1f;
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a5;
+            --accent-purple: #9b59b6;
+            --accent-purple-light: #b370cf;
+            --accent-gold: #f1c40f;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        p, ul, li {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-text {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-purple);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-purple-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(155, 89, 182, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            border-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, rgba(10, 10, 12, 0.7), rgba(10, 10, 12, 1)), url('red-curtain-image.jpg') center/cover no-repeat;
+            text-align: center;
+            padding-top: 8rem;
+        }
+
+        .hero img.poster {
+            animation: floatPoster 5s ease-in-out infinite;
+        }
+        @keyframes floatPoster {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .hero .tagline {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--accent-gold);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .hero .subhead {
+            font-size: 1.4rem;
+            color: #ffffff;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .hero .spine {
+            font-size: 1.2rem;
+            color: var(--accent-purple-light);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero .reel-bonus {
+            display: inline-block;
+            background: rgba(155, 89, 182, 0.1);
+            border: 1px solid rgba(155, 89, 182, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: #fff;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* The Big Shift / Positioning */
+        .positioning {
+            background-color: var(--bg-neutral);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .positioning-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .positioning p {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .positioning .highlight {
+            font-size: 1.5rem;
+            color: #fff;
+            font-family: var(--font-heading);
+            font-style: italic;
+        }
+
+        /* Who It's For */
+        .filter-section {
+            background-color: var(--bg-dark);
+            text-align: center;
+        }
+
+        .filter-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .filter-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        .filter-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+        .filter-list li::before {
+            content: '✓';
+            color: var(--accent-purple);
+            font-weight: bold;
+        }
+
+        .not-for {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+        }
+
+        /* Outcomes */
+        .outcomes {
+            background-color: var(--bg-neutral);
+        }
+
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .outcome-card {
+            background: var(--bg-dark);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .outcome-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-5px);
+        }
+
+        .outcome-card h4 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Syllabus */
+        .syllabus {
+            background-color: var(--bg-dark);
+        }
+
+        .week-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .week-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--accent-purple);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .week-title {
+            font-size: 1.5rem;
+            color: #fff;
+            font-family: var(--font-heading);
+        }
+
+        .week-focus {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .week-body ul {
+            margin-bottom: 1.5rem;
+        }
+
+        .week-result {
+            background: rgba(155, 89, 182, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Reel Output Section */
+        .reel-output {
+            background: linear-gradient(135deg, var(--bg-neutral), #1a1025);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .reel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .reel-card {
+            background: rgba(0,0,0,0.4);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+
+        .reel-card h3 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reel-difference {
+            margin-top: 4rem;
+            text-align: center;
+            background: var(--bg-dark);
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        /* Pricing */
+        .pricing {
+            background-color: var(--bg-dark);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .price-card.featured {
+            border-color: var(--accent-purple);
+            transform: scale(1.05);
+            background: linear-gradient(to bottom, #1c1c1f, #23152d);
+        }
+
+        .price-card h3 {
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .price-amount {
+            font-size: 3.5rem;
+            color: #fff;
+            font-family: var(--font-heading);
+            margin: 1rem 0;
+        }
+        
+        .price-savings {
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Rules & Cross-Sell */
+        .prereq-section {
+            background-color: var(--bg-neutral);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .prereq-box {
+            max-width: 700px;
+            margin: 0 auto;
+            border: 1px solid var(--accent-gold);
+            padding: 2rem;
+            border-radius: 12px;
+            background: rgba(241, 196, 15, 0.05);
+        }
+
+        .cross-sell {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cross-sell-item {
+            background: var(--bg-dark);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(to top, rgba(10, 10, 12, 1), rgba(155, 89, 182, 0.1));
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero .tagline { font-size: 1.5rem; }
+            .positioning-grid, .reel-grid, .filter-list { grid-template-columns: 1fr; }
+            .price-card.featured { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <p class="spine">Most young actors are told what to do in a scene. This is where they learn how to build one.</p>
+            <p style="color:#fff; font-weight:600; margin-top:1rem;">This is where working actors learn to stop guessing—and start building performances with intention.</p>
+            
+            <div style="margin: 2.5rem auto; max-width: 700px;">
+                <img src="mastermethods-logo.png" 
+                     alt="Master Methods Training Poster"
+                     class="poster"
+                     style="
+                        width: 100%;
+                        border-radius: 6px;
+                        box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+                        border: 1px solid rgba(255,255,255,0.1);
+                     ">
+            </div>
+            <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.5);">
+                Built on the foundational techniques used by working actors for decades
+            </p>
+
+            <div class="reel-bonus" style="margin-top: 2rem;">
+                Includes 2 custom reel-ready self-tape scenes — one prestige drama, one comedic multi-cam — written to showcase your actor at their best so they have material that actually works in submissions.
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <a href="#enroll" class="btn btn-primary">View Schedule & Tuition</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Positioning Section -->
+    <section class="positioning">
+        <div class="container positioning-grid">
+            <div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Stop Guessing. Start Building.</h2>
+                <p>Most acting classes focus on scenes. Some focus on auditions.</p>
+                <p>Very few teach the <strong>methods behind great acting.</strong></p>
+                <p style="color:#fff; font-weight:600;">Most young actors are taught what to do in a scene. This class teaches them how to build one.</p>
+                <p>Master Methods trains actors in the foundational techniques used across film, television, and stage—adapted in a way that’s clear, practical, and immediately usable on camera.</p>
+                <p class="highlight">This isn’t theory. It’s training.</p>
+            </div>
+            <div>
+                <div style="background: var(--bg-dark); padding: 3rem; border-radius: 20px; border: 1px solid var(--border-color);">
+                    <h3 style="color: #fff; margin-bottom: 1.5rem;">How This Is Different</h3>
+                    <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem; text-transform: uppercase;">Most young actors:</p>
+                    <ul style="margin-bottom: 2rem;">
+                        <li>Rely on instinct</li>
+                        <li>Repeat the same habits</li>
+                        <li>Don’t know why something works</li>
+                    </ul>
+                    <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem; text-transform: uppercase;">This class gives them:</p>
+                    <ul style="color: #fff;">
+                        <li><strong>Language</strong> to articulate choices</li>
+                        <li><strong>Structure</strong> to approach any scene</li>
+                        <li><strong>Tools</strong> they can use forever</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who It's For -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-box">
+                <h2 style="color: #fff;">Who This Is For</h2>
+                <p>This is a selective program designed for actors ready to go deeper.</p>
+                <p style="color:#fff; font-weight:600;">Completion of Audition Mastery or Character Lab is required before enrollment.</p>
+                <p style="color:#fff; font-weight:600;">If your actor has instincts—but no clear process—this is exactly where they should be.</p>
+                <ul class="filter-list">
+                    <li>Actors 12+ only</li>
+                    <li>Already have some experience (classes, auditions, or both)</li>
+                    <li>Curious, thoughtful, ready to dig in</li>
+                    <li>Willing to take creative risks</li>
+                </ul>
+                <div class="not-for">
+                    Not ideal for brand-new beginners. Requires focus and dedication.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes -->
+    <section class="outcomes">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Outcome Promise</h2>
+                <p>By the end of 8 weeks, actors will not just perform better, they will fundamentally change how they work.</p>
+            </div>
+            <div class="outcome-grid">
+                <div class="outcome-card">
+                    <h4>Multiple Lenses</h4>
+                    <p>Understand multiple acting techniques, giving them a vast toolbox instead of just one approach.</p>
+                </div>
+                <div class="outcome-card">
+                    <h4>Structured Approach</h4>
+                    <p>Know exactly how to approach any new scene with a reliable, repeatable structure.</p>
+                </div>
+                <div class="outcome-card">
+                    <h4>Stronger On Camera</h4>
+                    <p>Actors learn to apply technique in a way that actually reads on tape—clearer choices, stronger behavior, and more grounded performances.</p>
+                </div>
+                <div class="outcome-card">
+                    <h4>Intention & Control</h4>
+                    <p>Build dynamic performances with intention, control, and absolute confidence.</p>
+                </div>
+                <div class="outcome-card">
+                    <h4>Consistent Results</h4>
+                    <p>Actors stop having “good days and bad days” and start delivering strong, repeatable performances across auditions and scenes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Output Section (The Scenes) -->
+    <section class="reel-output">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: var(--accent-gold);">What Your Actor Leaves With</h2>
+                <p style="color: #fff; font-size: 1.25rem;">Not just training. Not just notes.<br><strong>Two fully developed, reel-ready performances.</strong></p>
+                <p style="color:#fff; font-weight:600; margin-top: 1.5rem;">These are not practice scenes. They are designed to become usable material for reels, profiles, and submissions.</p>
+                <p style="margin-top: 1rem;">At the end of the program, each actor will receive:</p>
+            </div>
+
+            <div class="reel-grid">
+                <div class="reel-card">
+                    <h3>🎭 A Custom Dramatic Scene</h3>
+                    <ul>
+                        <li>Written specifically for their type</li>
+                        <li>Grounded in prestige TV tone (HBO / Netflix-style)</li>
+                        <li>Focused on emotional depth and specificity</li>
+                    </ul>
+                </div>
+                <div class="reel-card">
+                    <h3>🎬 A Custom Comedic Scene</h3>
+                    <ul>
+                        <li>Built around their natural strengths</li>
+                        <li>Inspired by current multi-camera formats (Disney / Nick)</li>
+                        <li>Designed for timing, personality, and likability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="reel-difference">
+                <h3 style="color: #fff;">What makes this different?</h3>
+                <p>These are not generic scripts pulled off a shelf. They are developed for the actor, shaped through the course, and refined using the tools taught in class.</p>
+                <p style="color: var(--accent-purple-light); font-weight: bold; margin-top: 1rem; font-size: 1.2rem;">👉 So the final performance actually reflects their growth.</p>
+                
+                <p style="margin-top: 2rem; font-style: italic;">“Most actors wait years to build a strong reel. Your actor starts now—with material designed for them.”</p>
+                <p style="margin-top:2rem; font-weight:600; color:#fff;">Most actors spend years trying to build material like this. Your actor leaves with it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Syllabus -->
+    <section class="syllabus">
+        <div class="container">
+            <div class="section-header">
+                <h2>The 8-Week Syllabus</h2>
+                <p>This is where technique becomes usable—clear, practical, and built for real performance.</p>
+            </div>
+
+            <div class="week-grid">
+                <!-- Week 1 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-title">Week 1 — The Actor’s Foundation</span>
+                        <span class="week-focus">Stanislavski</span>
+                    </div>
+                    <ul>
+                        <li>Focus: Given circumstances, objectives, truth</li>
+                        <li>What is happening? What do I want? Why now?</li>
+                    </ul>
+                    <div class="week-result">👉 So performances stop feeling vague and start feeling grounded</div>
+                </div>
+
+                <!-- Week 2 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-title">Week 2 — Living Truthfully</span>
+                        <span class="week-focus">Meisner</span>
+                    </div>
+                    <ul>
+                        <li>Focus: Listening, reacting, being present</li>
+                        <li>Getting out of your head & behavior over performance</li>
+                    </ul>
+                    <div class="week-result">👉 So scenes feel alive, not rehearsed</div>
+                </div>
+
+                <!-- Week 3 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-title">Week 3 — Emotional Access</span>
+                        <span class="week-focus">Strasberg</span>
+                    </div>
+                    <ul>
+                        <li>Focus: Personalization, emotional connection</li>
+                        <li>Safe emotional recall & substitution without forcing</li>
+                    </ul>
+                    <div class="week-result">👉 So emotion becomes specific—not generic</div>
+                </div>
+
+                <!-- Week 4 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-title">Week 4 — Imagination & Circumstance</span>
+                        <span class="week-focus">Adler</span>
+                    </div>
+                    <ul>
+                        <li>Focus: Building reality through imagination</li>
+                        <li>Expanding beyond personal experience to make the world real</li>
+                    </ul>
+                    <div class="week-result">👉 So actors aren’t limited by their own life</div>
+                </div>
+
+                <!-- Week 5 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-title">Week 5 — Physical Expression</span>
+                        <span class="week-focus">Chekhov</span>
+                    </div>
+                    <ul>
+                        <li>Focus: Body leads emotion</li>
+                        <li>Psychological gesture, energy, and movement</li>
+                    </ul>
+                    <div class="week-result">👉 So characters become visible, not just internal</div>
+                </div>
+
+                <!-- Week 6 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-title">Week 6 — Action-Based Acting</span>
+                        <span class="week-focus">Mamet / Practical Aesthetics</span>
+                    </div>
+                    <ul>
+                        <li>Focus: Playing actions, not emotions</li>
+                        <li>What am I doing to the other person? Simplicity and clarity.</li>
+                    </ul>
+                    <div class="week-result">👉 So actors stop overthinking and start doing</div>
+                </div>
+
+                <!-- Week 7 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-title">Week 7 — Integration Lab</span>
+                        <span class="week-focus">Blending Methods</span>
+                    </div>
+                    <ul>
+                        <li>Focus: When to use what & finding your personal process</li>
+                        <li>Applying tools directly to scene work</li>
+                    </ul>
+                    <div class="week-result">👉 So actors build their own working system</div>
+                </div>
+
+                <!-- Week 8 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-title">Week 8 — Performance & Application</span>
+                        <span class="week-focus">Reel Capture</span>
+                    </div>
+                    <ul>
+                        <li>Focus: Real scene work using chosen tools</li>
+                        <li>Rehearse both scenes, refine performance, and record polished self-tapes</li>
+                    </ul>
+                    <div class="week-result">👉 So everything translates to actual performance and tangible assets</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prereq & Cross Sell -->
+    <section class="prereq-section">
+        <div class="container">
+            <div class="prereq-box">
+                <h3 style="color: var(--accent-gold); font-size: 1.8rem; margin-bottom: 1rem;">Enrollment Requirement</h3>
+                <p style="color: #fff; font-size: 1.2rem;">Actors must complete <strong>Audition Mastery</strong> or <strong>Character Lab</strong> before enrolling in Master Methods.</p>
+                <p>Master Methods is not beginner training. It assumes your actor already has audition experience, character awareness, and the readiness to work at a deeper level.</p>
+            </div>
+
+            <div class="cross-sell">
+                <h4 style="color: #fff; margin-bottom: 0.5rem;">Not ready for Master Methods yet?</h4>
+                <div class="cross-sell-item">
+                    <span>Focused on booking right now?</span>
+                    <a href="https://auditionmastery.childactor101.com" style="color: var(--accent-purple-light); font-weight: bold;">Start with Audition Mastery &rarr;</a>
+                </div>
+                <div class="cross-sell-item">
+                    <span>Need stronger, bolder choices?</span>
+                    <a href="https://characterlab.childactor101.com" style="color: var(--accent-purple-light); font-weight: bold;">Start with Character Lab &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part of CA101 Ecosystem -->
+    <section class="ecosystem" style="background-color: var(--bg-dark); border-bottom: 1px solid var(--border-color); text-align: center; padding: 4rem 2rem;">
+        <div class="container">
+            <h3 style="color: var(--accent-purple-light); font-size: 1.5rem; margin-bottom: 1rem;">Part of the CA101 Training Program</h3>
+            <p style="color: #fff; font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem auto;">Master Methods is one pillar of the full CA101 training system.</p>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); flex: 1; min-width: 250px;">
+                    <strong style="color: var(--accent-teal); display: block; margin-bottom: 0.5rem; font-size: 1.1rem;">Audition Mastery</strong>
+                    <span style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">develops execution.</span>
+                </div>
+                <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); flex: 1; min-width: 250px;">
+                    <strong style="color: var(--accent-coral); display: block; margin-bottom: 0.5rem; font-size: 1.1rem;">Character Lab</strong>
+                    <span style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">develops identity.</span>
+                </div>
+                <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--accent-purple); flex: 1; min-width: 250px; box-shadow: 0 0 15px rgba(155,89,182,0.2);">
+                    <strong style="color: var(--accent-purple-light); display: block; margin-bottom: 0.5rem; font-size: 1.1rem;">Master Methods</strong>
+                    <span style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">develops technique.</span>
+                </div>
+            </div>
+            <p style="color: #fff; font-weight: 500; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Together, they create actors who are more specific, more prepared, and more compelling on tape.</p>
+        </div>
+    </section>
+
+    <!-- Logistics & Pricing -->
+    <section id="enroll" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Schedule & Investment</h2>
+                <p>Wednesdays at 4:30 PM Pacific<br>September 2 – November 4</p>
+                <p style="font-size: 0.9rem;">No class September 23 or October 28</p>
+            </div>
+            
+            <p style="color:#fff; font-weight:600; text-align:center; margin-bottom:2rem;">This is a small-group training. Spots are intentionally limited.</p>
+
+            <div class="pricing-grid">
+                <!-- Early Bird Full -->
+                <div class="price-card featured">
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent-gold); color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; text-transform: uppercase;">Early Bird (Ends Aug 1st)</div>
+                    <h3>Pay In Full</h3>
+                    <div class="price-amount">$425</div>
+                    <div class="price-savings">Save $124</div>
+                    <a href="https://buy.stripe.com/00wcN53hRf679QF0tQ2wV0g" class="btn btn-primary" style="width: 100%;">Enroll Now</a>
+                </div>
+
+                <!-- Early Bird Payment Plan -->
+                <div class="price-card">
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--bg-light); border: 1px solid var(--border-color); color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; text-transform: uppercase;">Early Bird Plan</div>
+                    <h3>Payment Plan</h3>
+                    <div class="price-amount">$145<span style="font-size: 1.5rem; color: var(--text-muted);">/mo</span></div>
+                    <p style="margin-bottom: 1.5rem;">3 Monthly Payments</p>
+                    <a href="https://buy.stripe.com/28E4gz6u30bd4wl6Se2wV0h" class="btn btn-outline" style="width: 100%;">Choose Plan</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">Regular pricing begins Aug 2nd: Full Pay $549 | 3 Payments of $190</p>
+                
+                <div style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; max-width: 600px; margin: 3rem auto 0 auto;">
+                    <h4 style="color: #fff; margin-bottom: 1rem;">Included with Enrollment</h4>
+                    <ul style="list-style: none; text-align: left; padding: 0;">
+                        <li style="display: flex; gap: 10px; margin-bottom: 10px; color: #fff;"><span style="color: var(--accent-purple);">✓</span> Unlimited Prep101 audition guides for 3 months</li>
+                        <li style="display: flex; gap: 10px; margin-bottom: 10px; color: #fff;"><span style="color: var(--accent-purple);">✓</span> Two private 30-minute audition strategy sessions</li>
+                        <li style="display: flex; gap: 10px; color: #fff;"><span style="color: var(--accent-purple);">✓</span> Two self-tape feedbacks (non-class work)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 style="font-size: 3.5rem;">Train. Apply. Walk away with proof.</h2>
+            <p style="font-size: 1.4rem; color: #fff; max-width: 800px; margin: 0 auto 3rem auto;">
+                This isn’t just about learning technique.<br>
+                It’s about applying it—and leaving with two performances that represent your actor at their best.
+            </p>
+            <a href="https://buy.stripe.com/00wcN53hRf679QF0tQ2wV0g" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Claim Your Spot</a>
+            <p style="margin-top: 2rem; color: rgba(255,255,255,0.65); font-size: 0.95rem;">
+                Technique matters. But what matters most is whether it shows up on camera. This class makes sure it does.
+            </p>
+            <p style="margin-top:1rem; color:#fff; font-weight:600;">If your actor is serious, this is the next step.</p>
+        </div>
+    </section>
+
+</body>
+</html>
